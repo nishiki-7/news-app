@@ -1,47 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Image, View, Text } from 'react-native';
-import {ListItem} from "./components/ListItem"
+import { useState, useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, SafeAreaView, FlatList } from "react-native";
+import { ListItem } from "./components/ListItem";
+import dummyArticles from "./dummies/articles";
+import axios from "axios";
+import { Constants } from "expo-constants";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { HomeScreen } from "./screens/HomeScreen";
+import { ArticleScreen } from "./screens/ArticleScreen";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Article" component={ArticleScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#eee',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  itemContainer: {
-    height: 100,
-    width: "100%",
-    backgroundColor: "white",
-    flexDirection: "row",
-  },
-  leftContainer: {
-    width:100,
-  },
-  rightContainer:{
-    flex:1,
-    padding: 10,
-    justifyContent: 'space-between'
-  },
-  text: {
-    fontSize: 16,
-
-  },
-  subText: {
-    fontSize: 12,
-    color: "gray"
-  }
-});

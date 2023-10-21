@@ -1,23 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Image, View, Text } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
 
-export const ListItem = () => {
-  const sampleText = "つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipe";
+/**
+ *
+ * @param {
+ *  imageUrl: 画像URL(string)
+ *  title: タイトル(string)
+ *  author: ニュース提供元(string)
+ *  onPress: タップされた時のイベント
+ * } props
+ * @returns
+ */
+
+export const ListItem = (props) => {
   return (
-      <View style={styles.itemContainer}>
-        <View style={styles.leftContainer}>
-          <Image 
-          style={{width:100,height:100}}
-          source={{uri: "https://picsum.photos/id/10/300/300"}}
-          ></Image>
-        </View>
-        <View style={styles.rightContainer}>
-          <Text numberOfLines={3} style={styles.text}>{sampleText}</Text>
-          <Text style={styles.subText} >React News</Text>
-        </View>
+    <TouchableOpacity style={styles.itemContainer} onPress={props.onPress}>
+      <View style={styles.leftContainer}>
+        <Image style={{ width: 100, height: 100 }} source={{ uri: props.imageUrl }}></Image>
       </View>
+      <View style={styles.rightContainer}>
+        <Text numberOfLines={3} style={styles.text}>
+          {props.title}
+        </Text>
+        <Text style={styles.subText}>{props.author}</Text>
+      </View>
+    </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -28,19 +37,18 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   leftContainer: {
-    width:100,
+    width: 100,
   },
-  rightContainer:{
-    flex:1,
+  rightContainer: {
+    flex: 1,
     padding: 10,
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   text: {
     fontSize: 16,
-
   },
   subText: {
     fontSize: 12,
-    color: "gray"
-  }
+    color: "gray",
+  },
 });
