@@ -1,11 +1,9 @@
 import { StyleSheet, SafeAreaView, Text } from "react-native";
-import { WebView } from "react-native-webview";
 
-export const ArticleScreen = ({ route }) => {
-  const { article } = route.params;
+export const ClipScreen = ({ route }) => {
   return (
     <SafeAreaView style={StyleSheet.container}>
-      <WebView source={{ uri: article.url }} />
+      <Text>hogehoge</Text>
     </SafeAreaView>
   );
 };
